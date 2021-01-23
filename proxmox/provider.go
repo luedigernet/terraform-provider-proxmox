@@ -38,7 +38,6 @@ func Provider() *schema.Provider {
 		}
 	}
 	return &schema.Provider{
-
 		Schema: map[string]*schema.Schema{
 			"pm_user": {
 				Type:        schema.TypeString,
@@ -76,7 +75,6 @@ func Provider() *schema.Provider {
 			},
 			"pm_otp": &pmOTPprompt,
 		},
-
 		ResourcesMap: map[string]*schema.Resource{
 			"proxmox_vm_qemu": resourceVmQemu(),
 			"proxmox_lxc":     resourceLxc(),
@@ -84,8 +82,14 @@ func Provider() *schema.Provider {
 			// TODO - bridge
 			// TODO - vm_qemu_template
 		},
+		DataSourcesMap:   map[string]*schema.Resource{
+			"proxmox_vm_qemu": resourceVmQemu(),
+			"proxmox_lxc":     resourceLxc(),
+			// TODO - storage_iso
+			// TODO - bridge
+			// TODO - vm_qemu_template
+		},
 
-		ConfigureFunc: providerConfigure,
 	}
 }
 
